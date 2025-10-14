@@ -8,9 +8,7 @@ This project is a **React** application bootstrapped with **Vite**, featuring ES
 
 - [Technologies Used](#technologies-used)  
 - [Installation](#installation)  
-- [Available Scripts](#available-scripts)  
-- [Database](#database)  
-- [ESLint](#eslint)  
+- [Available Scripts](#available-scripts)
 
 ---
 
