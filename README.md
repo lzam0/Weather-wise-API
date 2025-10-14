@@ -1,16 +1,69 @@
-# React + Vite
+# 002 Assignment Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **React** application bootstrapped with **Vite**, featuring ESLint configuration, Fast Refresh, and PostgreSQL database integration using Docker.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## React Compiler
+- [Technologies Used](#technologies-used)  
+- [Installation](#installation)  
+- [Available Scripts](#available-scripts)  
+- [Database](#database)  
+- [ESLint](#eslint)  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+- **React** `^19.1.1`  
+- **React DOM** `^19.1.1`  
+- **Vite** `^7.1.7`  
+- **@vitejs/plugin-react** `^5.0.4` (for Fast Refresh)
+
+### Backend / Database
+- **PostgreSQL** (`pg` `^8.16.3`)  
+- **Docker** `^0.2.14`  
+
+### Development Tools
+- **ESLint** `^9.36.0`  
+- **@eslint/js** `^9.36.0`  
+- **eslint-plugin-react-hooks** `^5.2.0`  
+- **eslint-plugin-react-refresh** `^0.4.22`  
+- **@types/react** `^19.1.16`  
+- **@types/react-dom** `^19.1.9`  
+- **globals** `^16.4.0`  
+
+---
+
+## Installation
+
+1. Clone the repository:  
+   ```bash
+   git clone <your-repo-url>
+   cd 002-assignment-demo
+
+2. Install dependencies:
+    ```bash
+    npm i
+    ```
+    or
+    ```bash
+    npm install
+    ```
+## Available Scripts
+
+1. Run the React App:
+    ```bash
+    npm run dev
+    ```
+2. Start / Rebuild PostgreSQL via Docker:
+    ```bash
+    npm run db
+    ```
+
+This command will:
+Stop any running containers (docker-compose down)
+Build and start containers in detached mode (docker-compose up --build -d)
+Make sure you have a docker-compose.yml configured for PostgreSQL.
