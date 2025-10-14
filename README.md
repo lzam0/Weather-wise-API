@@ -41,7 +41,7 @@ This project is a **React** application bootstrapped with **Vite**, featuring ES
 
 1. Clone the repository:  
    ```bash
-   git clone <your-repo-url>
+   git clone https://stugit.cmp.uea.ac.uk/prg23hxu/002-Assignment-demo
    cd 002-assignment-demo
 
 2. Install dependencies:
