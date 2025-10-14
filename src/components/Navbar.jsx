@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Navbar.css"
 
-export default function Navbar(){
+function Navbar(){
     const [query, setQuery] = useState("")
     const handelSearch = (e) =>{
         e.preventDfault();
@@ -19,3 +19,4 @@ export default function Navbar(){
         </nav>
     );
 }
+export default Navbar;
