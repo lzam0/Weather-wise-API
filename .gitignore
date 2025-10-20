@@ -3,12 +3,13 @@ logs
 *.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Node dependencies
+# Node dependencies (for all subfolders)
 node_modules/
+server/node_modules/
+client/node_modules/
 
 # Build output
 dist/
@@ -18,6 +19,8 @@ dist-ssr/
 .env
 .env.local
 .env.*.local
+server/.env
+client/.env
 
 # Test coverage
 coverage/
