@@ -6,6 +6,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+   const [success, setSuccess] = useState("");
 
   // Handle form submission
   const handleLogin = async (e) => {
@@ -30,7 +31,10 @@ function Login() {
         throw new Error(data.message || "Login failed");
       }
       
+      // If login successful, display success message
+      setSuccess(data.message); // <-- Added to show 'Login successful'
       console.log("Login success:", data);
+
       // e.g., save token: localStorage.setItem("token", data.token)
     } catch (err) {
       setError(err.message);
@@ -57,7 +61,13 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
+      
+      {/* Display error message */}
       {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {/* Display success message */}
+      {success && <p style={{ color: "green" }}>{success}</p>}
+
     </div>
   );
 }

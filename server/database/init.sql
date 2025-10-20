@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS profile (
 -- Example User
 WITH new_user AS (
   INSERT INTO users (email, password_hash)
-  VALUES ('weatherwise@email.com', '$2b$10$7Qb95rJ8sTgE7ECk8i3y..Z8yOeSxSKKjml2qKmsx.b.KA4PbZzS2') -- Hashed password for 123
+  VALUES ('weatherwise@email.com', '$2b$10$rmHwvV23/JsZIaUaDKol6ecCCwwZuzNhNdneSpz/yqg8mXxRQz2Du') -- Hashed password for 123
   RETURNING user_id
 )
 INSERT INTO profile (user_id, full_name, location, unit_preference, language)
