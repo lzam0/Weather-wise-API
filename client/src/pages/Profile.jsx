@@ -7,7 +7,7 @@ function Profile() {
       {(user) => (
         <div className="login">
           <h1>My Profile</h1>
-          <p><strong>Name:</strong> {user.full_name}</p>
+          <p><strong>Name:</strong> {user.fname + " " + user.lname}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Location:</strong> {user.location}</p>
           <p><strong>Preferred Unit:</strong> {user.unit_preference}</p>
@@ -17,5 +17,7 @@ function Profile() {
     </ProtectedPages>
   );
 }
+
+// TLDR LOOK INTO USER MODEL TO OBTAIN DETAILS ^^^
 
 export default Profile;
