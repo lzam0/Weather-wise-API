@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -12,14 +13,26 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+
         <Route // Protected route, requires valid json web token
           path="/dashboard"
           element={
             <ProtectedRoute>
               <Dashboard />
+              
             </ProtectedRoute>
           }
         />
+
+        <Route  // Protected route, requires valid json web token
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
     </Router>
   );

@@ -7,10 +7,10 @@ const authToken = require('./middleware/authMiddleware')
 
 const authRoutes = require("./routes/auth");
 const dashboardRoutes = require("./routes/dashboard")
+const profileRoutes = require("./routes/profile")
 
 const app = express();
 
-// Allows request from FrontEnd
 // Allows request from FrontEnd
 app.use(cors({
     origin: "http://localhost:5173", // React frontend
@@ -26,8 +26,9 @@ app.use(cookieParser());
 // Routes
 app.use("/api", authRoutes);
 
-// Protected dashboard route
+// Protected routes
 app.use("/api/dashboard", dashboardRoutes);
+app.use(profileRoutes);
 
 // Start server
 app.listen(5000, () => console.log("🛰️ Server running on port 5000 🛰️"));

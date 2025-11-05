@@ -38,7 +38,7 @@ function Navbar(){
                     <h2>Login</h2>
                 </Link>
 
-                {location.pathname === "/dashboard" && (
+                {location.pathname === "/dashboard" || location.pathname === "/profile" && (
                     <button onClick={handleLogout}>Logout</button>
                 )}
 
