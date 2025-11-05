@@ -1,5 +1,5 @@
 import WeatherCard from "../components/WeatherCard";
-import "./Home.css"
+import "../styles/Home.css"
 
 function Home(){
     return(
