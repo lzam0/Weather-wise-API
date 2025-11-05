@@ -1,13 +1,32 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css"
 
 function Navbar(){
     const [query, setQuery] = useState("")
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const handelSearch = (e) =>{
-        e.preventDfault();
+    const handleSearch = (e) =>{
+        e.preventDefault();
         console.log("searching for: ",query)
+    };
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/api/logout", {
+                method: "POST",
+                credentials: "include",
+            });
+
+            if (response.ok){
+                navigate("/login"); // redirect to login page
+            }else{
+                console.error("Logout Failed"); // logout error message
+            }
+        } catch (err){
+            console.error(err); // error message
+        }
     };
 
     return (
@@ -19,8 +38,12 @@ function Navbar(){
                     <h2>Login</h2>
                 </Link>
 
-                <form className="search-form" onSubmit={handelSearch}>
-                    <input type="text" placeholder="Searchi City" value={query} onChange={(e) => setQuery(e.target.value)}/>
+                {location.pathname === "/dashboard" && (
+                    <button onClick={handleLogout}>Logout</button>
+                )}
+
+                <form className="search-form" onSubmit={handleSearch}>
+                    <input type="text" placeholder="Search City" value={query} onChange={(e) => setQuery(e.target.value)}/>
                     <button type="submit"> 🔎 </button>
                 </form>
             </div>

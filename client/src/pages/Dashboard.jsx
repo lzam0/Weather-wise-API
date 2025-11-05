@@ -15,7 +15,7 @@ function Dashboard() {
       });
 
       if (response.status === 401) {
-        // Not logged in then redirect to login
+        // Not authorised then redirect to login
         navigate("/");
       } else {
         const data = await response.json();
@@ -29,10 +29,7 @@ function Dashboard() {
   return (
     <div className="home">
       <h1>Dashboard</h1>
-      <p>{message}</p>
-      <div>
-        <p>CONTENT</p>
-      </div>
+      <p className="description">{message}</p>
     </div>
   );
 }

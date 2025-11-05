@@ -25,6 +25,7 @@ function Login() {
         },
         // Convert email and password to JSON string
         body: JSON.stringify({ email, password }),
+        credentials: "include"
       });
 
       // Parse JSON response from server
@@ -33,9 +34,6 @@ function Login() {
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
       }
-
-      // Save Json Web Token in local Stoage
-      localStorage.setItem("token", data.token);
 
       // Redirect to dashboard
       navigate("/dashboard");

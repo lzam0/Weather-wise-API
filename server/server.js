@@ -14,19 +14,20 @@ const app = express();
 // Allows request from FrontEnd
 app.use(cors({
     origin: "http://localhost:5173", // React frontend
-    credentials: true,
+    credentials: true, // allow cookies
 }));
 
 // parse JSON body
 app.use(express.json());
 
+// parse cookies
+app.use(cookieParser()); 
+
 // Routes
 app.use("/api", authRoutes);
 
 // Protected dashboard route
-app.get('/api/dashboard', authToken, (req, res) => {
-    res.json({ message: `Welcome ${req.user.email}` });
-});
+app.use("/api/dashboard", dashboardRoutes);
 
 // Start server
 app.listen(5000, () => console.log("🛰️ Server running on port 5000 🛰️"));
