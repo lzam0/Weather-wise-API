@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS profile (
     profile_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID NOT NULL,
-    full_name VARCHAR(255),
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
     location VARCHAR(255),
     unit_preference VARCHAR(50) DEFAULT 'celsius', -- e.g., 'celsius' or 'fahrenheit'
     language VARCHAR(50) DEFAULT 'english',
@@ -26,5 +27,5 @@ WITH new_user AS (
   VALUES ('weatherwise@email.com', '$2b$10$rmHwvV23/JsZIaUaDKol6ecCCwwZuzNhNdneSpz/yqg8mXxRQz2Du') -- Hashed password for 123
   RETURNING user_id
 )
-INSERT INTO profile (user_id, full_name, location, unit_preference, language)
-SELECT user_id, 'Weatherwise Admin', 'Norwich, UK', 'celsius', 'english' FROM new_user;
+INSERT INTO profile (user_id, first_name, last_name, location, unit_preference, language)
+SELECT user_id, 'Weatherwise', 'Admin', 'Norwich, UK', 'celsius', 'english' FROM new_user;

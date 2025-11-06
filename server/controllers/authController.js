@@ -29,8 +29,7 @@ class AuthController {
 
       res.cookie('token', token, { httpOnly: true });
 
-      // Ideally redirect to dashboard after login
-      // res.redirect('/admin');
+      // Create Successful Login Message
       return res.status(200).json({ message: 'Login successful', token });
 
     } catch (err) {

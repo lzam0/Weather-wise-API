@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
-
 function Login() {
   // State variables for email, password, and error message
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-   const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const navigate = useNavigate();
 
   // Handle form submission
   const handleLogin = async (e) => {
@@ -23,6 +24,7 @@ function Login() {
         },
         // Convert email and password to JSON string
         body: JSON.stringify({ email, password }),
+        credentials: "include"
       });
 
       // Parse JSON response from server
@@ -31,12 +33,9 @@ function Login() {
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
       }
-      
-      // If login successful, display success message
-      setSuccess(data.message); // <-- Added to show 'Login successful'
-      console.log("Login success:", data);
 
-      // e.g., save token: localStorage.setItem("token", data.token)
+      // Redirect to dashboard
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     }
