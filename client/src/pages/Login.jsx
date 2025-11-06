@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+
 function Login() {
   // State variables for email, password, and error message
   const [email, setEmail] = useState("");
