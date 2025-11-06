@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
@@ -67,7 +68,12 @@ function Login() {
 
       {/* Display success message */}
       {success && <p style={{ color: "green" }}>{success}</p>}
-
+      <p className="register-link">
+        {"Don't have an account? "}
+        <Link to="/register" className="register-text">
+          Register with us
+        </Link>
+    </p>
     </div>
   );
 }
