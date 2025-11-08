@@ -11,6 +11,27 @@ class UserModel {
 
     return result.rows[0];
   }
+
+  // Create new user
+  static async insertUser(email, passwordHash) {
+    const result = await pool.query(`
+      INSERT INTO users (email, password_hash)
+      VALUES ($1, $2)
+      RETURNING user_id, email, created_at
+    `, [email, passwordHash]);
+    return result.rows[0];
+  }
+
+  // Create profile entry
+  static async insertProfile(userId, firstName, lastName) {
+    const result = await pool.query(`
+      INSERT INTO profile (user_id, first_name, last_name)
+      VALUES ($1, $2, $3)
+      RETURNING user_id, first_name, last_name
+    `, [userId, firstName, lastName]);
+    return result.rows[0];
+  }
+
 }
 
 module.exports = UserModel;
