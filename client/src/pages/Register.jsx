@@ -4,6 +4,7 @@ import "./Register.css";
 
 function Register() {
   const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -27,7 +28,7 @@ function Register() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name,surname, email, password }),
       });
 
       const data = await response.json();
@@ -49,10 +50,17 @@ function Register() {
       <form className="register-form" onSubmit={handleRegister}>
         <input
           type="text"
-          placeholder="Full Name"
+          placeholder="First Name"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          required
+          value={surname}
+          onChange={(e) => setSurname(e.target.value)}
         />
         <input
           type="email"
