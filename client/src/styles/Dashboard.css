@@ -1,0 +1,100 @@
+.dashboard{
+	background: linear-gradient(135deg, #01110A 0%, #084C61 100%);
+	min-height: 100vh;
+	padding-top: 80px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	gap: 25px;
+}
+.dashboard-card{
+	background-color: #084C61;
+	padding: 40px;
+	border-radius: 16px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+	text-align: center;
+	width: 90%;
+	max-width: 400px;
+	animation: fadeIn 0.8s ease forwards;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+.dashboard-card h1{
+	color: #1DBCED;
+	font-size: 2rem;
+	margin-bottom: 15px;
+}
+
+.welcome-text{
+	font-size: 1.1rem;
+	margin-bottom: 25px;
+	color: white;
+}
+
+.welcome-text span{
+	color: #1DBCED;
+	font-weight: bold;
+}
+.dashboard-links{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.dashboard-btn{
+	display: inline-block;
+	text-decoration: none;
+	color: white;
+	background-color: #1DBCED;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-weight: bold;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dashboard-btn:hover{
+	background-color: #052d39;
+	transform: scale(1.05);
+}
+
+.dashboard-btn.secondary{
+	background-color: transparent;
+	border: 2px solid #1DBCED;
+	color: #1DBCED;
+}
+
+.dashboard-btn.secondary:hover{
+	background-color: #1DBCED;
+	color: #01110A;
+}
+
+.dashboard-weather{
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	gap: 20px;
+	width: 90%;
+	max-width: 900px;
+}
+@media (max-width: 600px){
+	.dashboard-card{
+		padding: 25px;
+		width: 95%;
+	}
+	.dashboard-card h1{
+		font-size: 1.6rem;
+	}
+	.welcome-text{
+		font-size: 1rem;
+	}
+	.dashboard-weather{
+		flex-direction: column;
+		align-items: center;
+	}
+}
