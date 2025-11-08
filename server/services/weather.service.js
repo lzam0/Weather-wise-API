@@ -38,7 +38,7 @@ export async function weatherInfo({ city, units = "metric"}) {
     if (!currentResp.ok)  {
         const text = await currentResp.text();
         const err = new Error(text || "current weather failed");
-        err.status = forecastResp.status;
+        err.status = currentResp.status;
         throw err;
     }
     if (!forecastResp.ok)  {
@@ -48,8 +48,8 @@ export async function weatherInfo({ city, units = "metric"}) {
         throw err;
     }
 
-    const current = await currentResp.json;
-    const forecast = await forecastResp.json;
+    const current = await currentResp.json();
+    const forecast = await forecastResp.json();
 
     return {
         location: `${current.name}, ${current.sys?.country || ""}`,
@@ -57,7 +57,7 @@ export async function weatherInfo({ city, units = "metric"}) {
             time: current.dt * 1000,
             temp: Math.round(current.main.temp),
             conditions: current.weather?.[0]?.description ??"",
-            icon: current.weather?.[0] ?? "",
+            icon: current.weather?.[0]?.icon ?? "",
             timezone: current.timezone,
         },
         nextDays: Daily(forecast.list, 2),
