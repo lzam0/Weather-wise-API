@@ -1,5 +1,7 @@
 import express from 'express';
-import 'dotenv/config';
+import weatherRoutes from "./routes/weatherRoutes.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const express = require('express');
 const cors = require('cors');
@@ -21,6 +23,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api", authRoutes);
+app.use("/api/weather", weatherRoutes);
 
 // Start server
 app.listen(5000, () => console.log("🛰️ Server running on port 5000 🛰️"));
