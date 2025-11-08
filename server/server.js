@@ -1,34 +1,26 @@
+import express from 'express';
+import 'dotenv/config';
+
 const express = require('express');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 
-// Middleware
-const authToken = require('./middleware/authMiddleware')
+const PORT = process.env.PORT || 5432;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+
 
 const authRoutes = require("./routes/auth");
-const dashboardRoutes = require("./routes/dashboard")
-const profileRoutes = require("./routes/profile")
 
 const app = express();
 
 // Allows request from FrontEnd
-app.use(cors({
-    origin: "http://localhost:5173", // React frontend
-    credentials: true, // allow cookies
-}));
+app.use(cors());
 
 // parse JSON body
 app.use(express.json());
 
-// parse cookies
-app.use(cookieParser()); 
-
 // Routes
 app.use("/api", authRoutes);
-
-// Protected routes
-app.use("/api/dashboard", dashboardRoutes);
-app.use(profileRoutes);
 
 // Start server
 app.listen(5000, () => console.log("🛰️ Server running on port 5000 🛰️"));
