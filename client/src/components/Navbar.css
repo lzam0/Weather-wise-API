@@ -166,3 +166,30 @@
 	transform: scale(1.05);
 	transition: all 0.3s ease;
 }
+
+@media (max-width: 768px) {
+	.navbar {
+		top: auto;
+		bottom: 0;
+		box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
+	}
+
+	.menu-dropdown {
+		top: auto;
+		bottom: 65px;
+		right: 20px;
+	}
+
+	.navbar-container {
+		justify-content: space-around;
+	}
+
+	.logo {
+		font-size: 1.4rem;
+	}
+
+  body {
+		padding-top: 0;
+		padding-bottom: 60px;
+	}
+}
