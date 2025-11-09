@@ -31,7 +31,7 @@ function Home(){
                 setError("");
                 setData(null);
 
-                const res = await fetch(`/api/weather?city=${city}&units=metric`);
+                const res = await fetch(`/api/weather?city=${encodeURIComponent(city)}&units=metric`);
                 const json = await res.json();
 
                 if (!res.ok) throw new Error(json.error || "Failed to load up the weather");
@@ -64,8 +64,8 @@ function Home(){
                     {/* Now card */}
                     <WeatherCard
                     location={data.location}
-                    time= {new Date(data.now.time).toLocaleTimeString([], { hour: "2-digit", minute: "2igit"})}
-                    temperature={`${data.now.temperature}°C`}
+                    time= {new Date(data.now.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"})}
+                    temperature={`${data.now.temp}°C`}
                     condition={data.now.conditions} />
 
                  {/* Tomorrow */}
@@ -73,7 +73,7 @@ function Home(){
                     <WeatherCard
                     location={data.location}
                     time= {data.nextDays[0].date}
-                    temperature={`${data.nextDays[0].temperature}°C`}
+                    temperature={`${data.nextDays[0].temp}°C`}
                     condition= {data.nextDays[0].conditions}
                     />
                 )}
@@ -83,7 +83,7 @@ function Home(){
                     <WeatherCard
                     location={data.location}
                     time= {data.nextDays[1].date}
-                    temperature={`${data.nextDays[1].temperature}°C`}
+                    temperature={`${data.nextDays[1].temp}°C`}
                     condition= {data.nextDays[1].conditions}
                     />
                 )}

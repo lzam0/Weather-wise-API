@@ -1,4 +1,4 @@
-import pool from '../controllers/dbController';
+import pool from '../controllers/dbController.js';
 
 class UserModel {
   static async findByEmail(email) {

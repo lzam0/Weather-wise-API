@@ -1,6 +1,8 @@
-import {router} from "express";
-import {authenticateToken} from "../middleware/authMiddleware";
-import UserModel from "../models/userModel";
+import { Router } from "express";
+import { authenticateToken } from "../middleware/authMiddleware.js";
+import { UserModel } from "../models/userModel.js";
+
+const router = Router()
 
 // GET /api/profile (protected)
 router.get("/api/profile", authenticateToken, async (req, res) => {
