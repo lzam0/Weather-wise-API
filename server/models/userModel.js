@@ -1,4 +1,4 @@
-const pool = require('../controllers/dbController');
+import pool from '../controllers/dbController';
 
 class UserModel {
   static async findByEmail(email) {
@@ -13,4 +13,4 @@ class UserModel {
   }
 }
 
-module.exports = UserModel;
+export default UserModel;

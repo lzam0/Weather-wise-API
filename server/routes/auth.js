@@ -1,6 +1,5 @@
-const express = require("express");
-const router = express.Router();
-const { login } = require("../controllers/authController");
+import { router } from "express";
+import { login } from "../controllers/authController";
 
 // catch login post request
 router.post("/login", login);
@@ -14,4 +13,4 @@ router.post("/logout", (req, res) => {
   res.json({ message: "Logged out successfully" });
 });
 
-module.exports = router;
+export default router;

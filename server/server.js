@@ -1,17 +1,10 @@
-import express from 'express';
-import weatherRoutes from "./routes/weatherRoutes.js";
+import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
+import weatherRoutes from "./routes/weatherRoutes.js";
+import authRoutes from "./routes/auth.js";
+
 dotenv.config();
-
-const express = require('express');
-const cors = require('cors');
-
-const PORT = process.env.PORT || 5432;
-const NODE_ENV = process.env.NODE_ENV || 'development';
-
-
-
-const authRoutes = require("./routes/auth");
 
 const app = express();
 
