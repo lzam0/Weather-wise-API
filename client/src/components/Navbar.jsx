@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import "./Navbar.css"
+import "../styles/Navbar.css"
 import { getText } from "../utils/contentLoader";
 
 function Navbar() {
