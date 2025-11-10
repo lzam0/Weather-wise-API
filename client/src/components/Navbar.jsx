@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/Navbar.css"
-import { getText } from "../utils/contentLoader";
+import { getText } from "../utils/contentLoader.js";
 
 function Navbar({ onSearch }) {
   const [query, setQuery] = useState("");

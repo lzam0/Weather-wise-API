@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import  UserModel  from '../models/userModel.js';
-import EmailController from './emailController';
+import EmailController from './emailController.js';
 
 class AuthController {
   static async login(req, res) {

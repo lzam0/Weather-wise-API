@@ -1,4 +1,4 @@
-import "./WeatherCard.css"
+import "../styles/WeatherCard.css"
 
 function WeatherCard({ location, time, temperature, condition }){
     return (
