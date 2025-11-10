@@ -1,5 +1,5 @@
 import "./WeatherCard.css"
-
+// placeholder
 function WeatherCard(){
     const weatherData = {
         location: "London, UK",

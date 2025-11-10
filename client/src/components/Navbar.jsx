@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css"
+import { getText } from "../utils/contentLoader";
 
 function Navbar() {
   const [query, setQuery] = useState("");
@@ -37,12 +38,12 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="logo">
-          WeatherWise
+          {getText("navbar", "logoText")}
         </Link>
         <form className="search-form" onSubmit={handleSearch}>
           <input
             type="text"
-            placeholder="Search City"
+            placeholder={getText("navbar", "searchPlaceholder")}
             value={query}
             onChange={(e) => setQuery(e.target.value)}/>
           <button type="submit">🔎</button>
@@ -55,14 +56,14 @@ function Navbar() {
 
         <div className={`menu-dropdown ${menuOpen ? "show" : ""}`}>
           {isProtectedPage ? (
-            <button className="logout-btn" onClick={handleLogout}>Logout</button>
+            <button className="logout-btn" onClick={handleLogout}>{getText("navbar", "logout")}</button>
           ) : (
             <>
               <Link to="/login" onClick={() => setMenuOpen(false)}>
-                Login
+                {getText("navbar", "login")}
               </Link>
               <Link to="/register" onClick={() => setMenuOpen(false)}>
-                Register
+                {getText("navbar", "register")}
               </Link>
             </>
           )}

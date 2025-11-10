@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
+import { getText } from "../utils/contentLoader";
 
 function Register() {
   const [name, setName] = useState("");
@@ -17,7 +18,7 @@ function Register() {
     setSuccess("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(getText("registerPage", "passwordMismatch"));
       return;
     }
 
@@ -34,10 +35,10 @@ function Register() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Registration failed");
+        throw new Error(data.message || getText("registerPage", "registerFail"));
       }
 
-      setSuccess("Registration successful! You can now log in.");
+      setSuccess(getText("registerPage", "registerSuccess"));
       console.log("Registration success:", data);
     } catch (err) {
       setError(err.message);
@@ -46,53 +47,53 @@ function Register() {
 
   return (
     <div className="register">
-      <h1>Register</h1>
+      <h1>{getText("registerPage", "title")}</h1>
       <form className="register-form" onSubmit={handleRegister}>
         <input
           type="text"
-          placeholder="First Name"
+          placeholder={getText("registerPage", "firstName")}
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Last Name"
+          placeholder={getText("registerPage", "lastName")}
           required
           value={surname}
           onChange={(e) => setSurname(e.target.value)}
         />
         <input
           type="email"
-          placeholder="Email"
+          placeholder={getText("registerPage", "email")}
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder={getText("registerPage", "password")}
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Confirm Password"
+          placeholder={getText("registerPage", "confirmPassword")}
           required
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <button type="submit">Register</button>
+        <button type="submit">{getText("registerPage", "registerBtn")}</button>
       </form>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}
 
       <p className="login-link">
-        Already have an account?{" "}
+        {getText("registerPage", "loginPrompt")}{" "}
         <a href="/login" className="login-text">
-          Log in
+          {getText("registerPage", "loginLink")}
         </a>
       </p>
     </div>
