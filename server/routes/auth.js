@@ -17,4 +17,21 @@ router.post("/logout", (req, res) => {
   res.json({ message: "Logged out successfully" });
 });
 
+router.get("/verify", async (req, res) => {
+  try {
+    const { token } = req.query;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Update user as verified
+    await UserModel.verifyUser(decoded.email);
+
+    // Redirect to frontend login page with success message
+    res.redirect("http://localhost:5173/login?verified=true");
+  } catch (error) {
+    res.redirect("http://localhost:5173/login?verified=false");
+  }
+});
+
+
+
 module.exports = router;

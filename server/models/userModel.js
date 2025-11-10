@@ -32,6 +32,23 @@ class UserModel {
     return result.rows[0];
   }
 
+  // Verify user email
+  static async verifyUser(email) {
+    try {
+      const result = await pool.query(
+        `UPDATE users 
+         SET verified = TRUE, updated_at = CURRENT_TIMESTAMP 
+         WHERE email = $1 
+         RETURNING *;`,
+        [email]
+      );
+
+      return result.rows[0];
+    } catch (error) {
+      console.error('Error verifying user:', error);
+      throw error;
+    }
+  }
 }
 
 module.exports = UserModel;

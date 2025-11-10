@@ -34,12 +34,12 @@ async function sendVerificationEmail(to, firstName) {
 
   // Generate a token with the email, verification code, and expiry
   const token = jwt.sign(
-    { email: to, code: code },  // Data to encode in the token
+    { email: to },  // Data to encode in the token
     process.env.JWT_SECRET,          // Secret key to sign the token
     { expiresIn: '10m' }        // Expiry time of 10 minutes
   );
 
-  const verificationLink = `http://localhost:3000/verify?token=${token}`;
+  const verificationLink = `http://localhost:5000/api/verify?token=${token}`;
 
   const text = `
   Hi ${firstName},
