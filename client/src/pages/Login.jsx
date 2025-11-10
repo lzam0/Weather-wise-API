@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
+import "../styles/Login.css";
+import { getText } from "../utils/contentLoader";
 
 function Login() {
   // State variables for email, password, and error message
@@ -44,23 +45,23 @@ function Login() {
 
   return (
     <div className="login">
-      <h1>Login</h1>
+      <h1>{getText("loginPage", "title")}</h1>
       <form className="login-form" onSubmit={handleLogin}>
         <input
           type="email"
-          placeholder="Email"
+          placeholder={getText("loginPage", "emailPlaceholder")}
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder={getText("loginPage", "passwordPlaceholder")}
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit">{getText("loginPage", "loginButton")}</button>
       </form>
       
       {/* Display error message */}
@@ -69,9 +70,9 @@ function Login() {
       {/* Display success message */}
       {success && <p style={{ color: "green" }}>{success}</p>}
       <p className="register-link">
-        {"Don't have an account? "}
+        {getText("loginPage", "registerPrompt") + " "}
         <Link to="/register" className="register-text">
-          Register with us
+          {getText("loginPage", "registerLink")}
         </Link>
     </p>
     </div>

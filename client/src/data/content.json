@@ -1,0 +1,54 @@
+{
+  "navbar": {
+    "logoText": "WeatherWise",
+    "searchPlaceholder": "Search City",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "loginPage": {
+    "title": "Login",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "loginButton": "Login",
+    "registerPrompt": "Don't have an account?",
+    "registerLink": "Register with us"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back,",
+    "profileBtn": "Check Profile",
+    "homeBtn": "Return Home"
+  },
+
+  "home": {
+    "title": "Your Weather Companion",
+    "description": "Daily accurate forecast tailored for you"
+  },
+  "profile": {
+    "title": "My Profile",
+    "name": "Name",
+    "email": "Email",
+    "location": "Location",
+    "unit": "Preferred Unit",
+    "language": "Language",
+    "returnBtn": "Return to Dashboard"
+  },
+  "registerPage": {
+    "title": "Register",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "registerBtn": "Register",
+    "passwordMismatch": "Passwords do not match",
+    "registerFail": "Registration failed",
+    "registerSuccess": "Registration successful! You can now log in.",
+    "loginPrompt": "Already have an account?",
+    "loginLink": "Log in"
+  },
+    "protectedPages":{
+      "loadingPar":"Loading..."
+    }
+}

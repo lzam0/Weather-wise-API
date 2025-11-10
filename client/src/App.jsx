@@ -10,12 +10,6 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 
-// Import protected components (routes and pages)
-import ProtectedPages from "./components/ProtectedPages"; 
-import ProtectedRoute from "./components/ProtectedRoute"; 
-
-
-
 function App() {
   return (
     <Router>
@@ -24,26 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
-        {/* Protected route */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedPages>
-              {(user) => <Dashboard user={user} />}
-            </ProtectedPages>
-          }
-        />
-
-        <Route
-          path="/profile"
-          element={
-            <ProtectedPages>
-              {(user) => <Profile user={user} />}
-            </ProtectedPages>
-          }
-        />
-
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );
