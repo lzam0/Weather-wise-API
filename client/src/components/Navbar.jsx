@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css"
 import { getText } from "../utils/contentLoader";
 
-function Navbar() {
+function Navbar({ onSearch }) {
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -11,28 +11,31 @@ function Navbar() {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    if (!query.trim()) return;
+    onSearch(query.trim());
+    setQuery("")
     console.log("Searching for:", query);
   };
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/logout", {
-        method: "POST",
-        credentials: "include",
-      });
+const handleLogout = async () => {
+  try {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+      credentials: "include",
+    });
 
-      if (response.ok) {
-        navigate("/login"); // redirect after logout
-      } else {
-        console.error("Logout failed");
-      }
-    } catch (err) {
-      console.error(err);
+    if (response.ok) {
+      navigate("/login");
+    } else {
+      console.error("Logout failed");
     }
-  };
+  } catch (err) {
+    console.error(err)
+  }
+};
 
-  const isProtectedPage =
-    location.pathname === "/dashboard" || location.pathname === "/profile";
+const isProtectedPage =
+  location.pathname === "/dashboard" || location.pathname === "/profile";
 
   return (
     <nav className="navbar">
@@ -53,19 +56,21 @@ function Navbar() {
           <span></span>
           <span></span>
         </div>
-
         <div className={`menu-dropdown ${menuOpen ? "show" : ""}`}>
           {isProtectedPage ? (
-            <button className="logout-btn" onClick={handleLogout}>{getText("navbar", "logout")}</button>
+            <button className="logout-btn" onClick={handleLogout}>
+              {getText("navbar", "logout")}
+            </button>
           ) : (
             <>
               <Link to="/login" onClick={() => setMenuOpen(false)}>
                 {getText("navbar", "login")}
               </Link>
+
               <Link to="/register" onClick={() => setMenuOpen(false)}>
                 {getText("navbar", "register")}
               </Link>
-            </>
+              </>
           )}
         </div>
       </div>

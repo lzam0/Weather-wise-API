@@ -1,7 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const authenticateToken = require("../middleware/authMiddleware");
-const UserModel = require("../models/userModel");
+import { Router } from "express";
+import { authenticateToken } from "../middleware/authMiddleware.js";
+import { UserModel } from "../models/userModel.js";
+
+const router = Router()
 
 // GET /api/profile (protected)
 router.get("/api/profile", authenticateToken, async (req, res) => {
@@ -27,4 +28,4 @@ router.get("/api/profile", authenticateToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

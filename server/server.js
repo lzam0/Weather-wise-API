@@ -1,34 +1,22 @@
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import weatherRoutes from "./routes/weatherRoutes.js";
+import authRoutes from "./routes/auth.js";
 
-// Middleware
-const authToken = require('./middleware/authMiddleware')
-
-const authRoutes = require("./routes/auth");
-const dashboardRoutes = require("./routes/dashboard")
-const profileRoutes = require("./routes/profile")
+dotenv.config();
 
 const app = express();
 
 // Allows request from FrontEnd
-app.use(cors({
-    origin: "http://localhost:5173", // React frontend
-    credentials: true, // allow cookies
-}));
+app.use(cors());
 
 // parse JSON body
 app.use(express.json());
 
-// parse cookies
-app.use(cookieParser()); 
-
 // Routes
 app.use("/api", authRoutes);
-
-// Protected routes
-app.use("/api/dashboard", dashboardRoutes);
-app.use(profileRoutes);
+app.use("/api/weather", weatherRoutes);
 
 // Start server
 app.listen(5000, () => console.log("🛰️ Server running on port 5000 🛰️"));
