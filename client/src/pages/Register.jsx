@@ -4,8 +4,8 @@ import "../styles/Register.css";
 import { getText } from "../utils/contentLoader";
 
 function Register() {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,7 +29,7 @@ function Register() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name,surname, email, password }),
+        body: JSON.stringify({ firstName,lastName, email, password }),
       });
 
       const data = await response.json();
@@ -62,13 +62,6 @@ function Register() {
           required
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder={getText("registerPage", "lastName")}
-          required
-          value={surname}
-          onChange={(e) => setSurname(e.target.value)}
         />
         <input
           type="email"
