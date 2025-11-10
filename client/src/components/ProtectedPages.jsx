@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getText } from "../utils/contentLoader";
 
 function ProtectedPages({ children }) {
     const [user, setUser] = useState(null);
@@ -28,7 +29,7 @@ function ProtectedPages({ children }) {
     fetchUser();
   }, [navigate]);
   
-  if (!user) return <p>Loading...</p>;
+  if (!user) return <p>{getText("protectedPages", "loadingPar")}</p>;
 
   return <div>{children(user)}</div>; // pass user to children as function
 }
