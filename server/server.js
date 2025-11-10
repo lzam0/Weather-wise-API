@@ -2,13 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-// Middleware
-const authToken = require('./middleware/authMiddleware')
-
+// Page Routes
 const authRoutes = require("./routes/auth");
 const dashboardRoutes = require("./routes/dashboard")
 const profileRoutes = require("./routes/profile")
 
+// Initialize express app
 const app = express();
 
 // Allows request from FrontEnd

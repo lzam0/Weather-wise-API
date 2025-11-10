@@ -11,24 +11,43 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  // Password validation function
+  // password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.
+  function validatePassword(password) {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    return regex.test(password);
+  }
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess("");
 
+    // Validate password strength
+    if (!validatePassword(password)) {
+      setPasswordError(
+        "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
+      );
+      return;
+    } else {
+      setPasswordError("");
+    }
+
+    // Confirm password match
     if (password !== confirmPassword) {
       setError(getText("registerPage", "passwordMismatch"));
       return;
     }
 
     try {
-      //Backend endpoint placeholder (to be implemented later)
+      // Backend API to call register user
       const response = await fetch("http://localhost:5000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-        },
+        }, // Pass firstName and lastName in the request body
         body: JSON.stringify({ firstName,lastName, email, password }),
       });
 
@@ -45,10 +64,13 @@ function Register() {
     }
   };
 
+
   return (
     <div className="register">
       <h1>{getText("registerPage", "title")}</h1>
       <form className="register-form" onSubmit={handleRegister}>
+
+        {/* First Name */}
         <input
           type="text"
           placeholder={getText("registerPage", "firstName")}
@@ -56,6 +78,8 @@ function Register() {
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
+
+        {/* Last Name */}
         <input
           type="text"
           placeholder="Last Name"
@@ -63,6 +87,8 @@ function Register() {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
+
+        {/* Email */}
         <input
           type="email"
           placeholder={getText("registerPage", "email")}
@@ -70,6 +96,8 @@ function Register() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+
+        {/* Password */}
         <input
           type="password"
           placeholder={getText("registerPage", "password")}
@@ -77,6 +105,8 @@ function Register() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
+        {/* Confirm password */}
         <input
           type="password"
           placeholder={getText("registerPage", "confirmPassword")}
@@ -86,9 +116,14 @@ function Register() {
         />
         <button type="submit">{getText("registerPage", "registerBtn")}</button>
       </form>
-
+      
+      {/* Success + error messages */}
       {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}
+
+      {password && passwordError && (
+        <p style={{ color: "orange", fontSize: "0.9rem" }}>{passwordError}</p>
+      )}
 
       <p className="login-link">
         {getText("registerPage", "loginPrompt")}{" "}
