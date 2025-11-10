@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Navbar.css"
 
-function Navbar() {
+function Navbar({ onSearch }) {
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
+    if (!query.trim()) return;
+    onSearch(query.trim());
+    setQuery("")
     console.log("Searching for:", query);
   };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -39,7 +43,7 @@ function Navbar() {
         <Link to="/login" onClick={() => setMenuOpen(false)}>
             Login
         </Link>
-        
+
         <Link to="/register" onClick={() => setMenuOpen(false)}>
             Register
         </Link>

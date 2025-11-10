@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import WeatherCard from "../components/WeatherCard";
 import "../styles/Home.css"
+import Navbar from "../components/Navbar";
 
 // function Home(){
 //     return(
@@ -45,16 +46,11 @@ function Home(){
 
     return (
         <div className = "home">
+
+            <Navbar onSearch={(searchedCity) => setCity(searchedCity)} />
             <div className="home-content">
                 <h1> Your Weather Companion </h1>
 
-                <input
-                type="text"
-                value= {city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="Enter a city..."
-                className="city-input"
-                />
 
                 {error && <p className="error">{error}</p>}
                 {!data && !error && <p>Loading</p>}
