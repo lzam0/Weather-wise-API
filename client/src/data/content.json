@@ -47,5 +47,8 @@
     "registerSuccess": "Registration successful! You can now log in.",
     "loginPrompt": "Already have an account?",
     "loginLink": "Log in"
-  }
+  },
+    "protectedPages":{
+      "loadingPar":"Loading..."
+    }
 }

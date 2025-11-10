@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import  UserModel  from '../models/userModel.js';
+import EmailController from './emailController';
 
 class AuthController {
   static async login(req, res) {
@@ -35,6 +36,39 @@ class AuthController {
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: 'Server error, please try again later' });
+    }
+  }
+
+  static async register(req, res) {
+    const { firstName, lastName, email, password } = req.body;
+    
+    try {
+      // Check if email already exists
+      const existingUser = await UserModel.findByEmail(email);
+      if (existingUser) {
+        return res.status(400).json({ message: "Email already registered" });
+      }
+
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Insert User (into users table)
+      const newUser = await UserModel.insertUser(email, hashedPassword);
+
+      // Insert profile (into profile table)
+      await UserModel.insertProfile(newUser.user_id, firstName, lastName);
+
+      // Send Verification Email to user
+      await EmailController.sendVerificationEmail(email, firstName);  
+
+      return res.status(201).json({
+        message: "User registered successfully",
+        user: { email, firstName, lastName },
+      });
+
+    } catch (err) {
+      console.error(err)
+        return res.status(500).json({ message: "Server error during registration" });
     }
   }
 }
