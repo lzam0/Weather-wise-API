@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./Navbar.css"
+import {getText} from "../utils/contentLoader";
 
 function Navbar({ onSearch }) {
   const [query, setQuery] = useState("");
@@ -13,6 +14,26 @@ function Navbar({ onSearch }) {
     setQuery("")
     console.log("Searching for:", query);
   };
+
+const handleLogout = async () => {
+  try {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (response.ok) {
+      Navigate("/login");
+    } else {
+      console.error("Logout failed");
+    }
+  } catch (err) {
+    console.error(err)
+  }
+};
+
+const isProtectedPage =
+  location.pathname === "/dashboard" || location.pathname === "/profile";
 
   return (
     <nav className="navbar">
@@ -34,19 +55,21 @@ function Navbar({ onSearch }) {
           <span></span>
         </div>
         <div className={`menu-dropdown ${menuOpen ? "show" : ""}`}>
-          <Link to="/login" onClick={()=> setMenuOpen(false)}>
-            Login
-          </Link>
-        </div>
+          {isProtectedPage ? (
+            <button className="logout-btn" onClick={handleLogout}>
+              {getText("navbar", "logout")}
+            </button>
+          ) : (
+            <>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                {getText("navbar", "login")}
+              </Link>
 
-        <div className={`menu-dropdown ${menuOpen ? "show" : ""}`}>
-        <Link to="/login" onClick={() => setMenuOpen(false)}>
-            Login
-        </Link>
-
-        <Link to="/register" onClick={() => setMenuOpen(false)}>
-            Register
-        </Link>
+              <Link to="/register" onClick={() => setMenuOpen(false)}>
+                {getText("navbar", "register")}
+              </Link>
+              </>
+          )}
         </div>
       </div>
     </nav>
