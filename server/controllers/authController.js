@@ -1,7 +1,11 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import  UserModel  from '../models/userModel.js';
-import EmailController from './emailController.js';
+const dotenv = require("dotenv");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const UserModel = require("../models/userModel");
+
+const EmailController = require("./emailController");
+
+dotenv.config();
 
 class AuthController {
   static async login(req, res) {
@@ -73,4 +77,4 @@ class AuthController {
   }
 }
 
-export default AuthController;
+module.exports = AuthController;

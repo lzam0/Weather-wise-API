@@ -1,4 +1,4 @@
-import pool from '../controllers/dbController.js';
+const pool = require("../controllers/dbController");
 
 class UserModel {
   static async findByEmail(email) {
@@ -51,4 +51,4 @@ class UserModel {
   }
 }
 
-export default UserModel;
+module.exports = UserModel;

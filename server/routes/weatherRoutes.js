@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { getWeather } from "../controllers/weatherController.js";
+const express = require("express");
+const { getWeather } = require("../controllers/weatherController");
 
-const router = Router();
+const router = express.Router();
 
 router.get("/", getWeather);
 
-export default router;
+module.exports = router;

@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 dotenv.config();
 
 const api = "https://api.openweathermap.org/data/2.5/";
@@ -25,7 +25,7 @@ function Daily (list, days = 2) {
     });
 }
 
-export async function weatherInfo({ city, units = "metric"}) {
+async function weatherInfo({ city, units = "metric"}) {
     const apikey = process.env.OPENWEATHER_KEY;
     if (!apikey) throw new Error("missing openweather api key");
 
@@ -65,3 +65,5 @@ export async function weatherInfo({ city, units = "metric"}) {
 
 
 }
+
+module.exports = { weatherInfo }

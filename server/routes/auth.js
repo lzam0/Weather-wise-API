@@ -1,9 +1,9 @@
-import jwt from "jsonwebtoken";
-import AuthController from "../controllers/authController.js";
-import express from "express";
-import UserModel from "../models/userModel.js";
-
+const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const AuthController = require("../controllers/authController");
+const UserModel = require("../models/userModel");
+
 
 // catch login post request
 router.post("/login", AuthController.login);
@@ -38,7 +38,7 @@ router.get("/verify", async (req, res) => {
 
 
 
-export default router;
+module.exports = router;
 
 
 

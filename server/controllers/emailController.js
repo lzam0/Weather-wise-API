@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import jwt from 'jsonwebtoken';
+const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
 
 // Create a transporter object
 const transporter = nodemailer.createTransport({
@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // General email sending function
-export async function sendEmail(to, subject, text) {
+async function sendEmail(to, subject, text) {
   const mailOptions = {
     from: 'parkflow113@gmail.com',
     to: to,
@@ -29,7 +29,7 @@ export async function sendEmail(to, subject, text) {
 }
 
 // Verification email helper
-export async function sendVerificationEmail(to, firstName) {
+async function sendVerificationEmail(to, firstName) {
   const subject = 'Verify Your Weatherwise Account';
 
   // Generate a token with the email, verification code, and expiry
@@ -61,4 +61,4 @@ export async function sendVerificationEmail(to, firstName) {
 }
 
 // Export the functions
-export default { sendEmail, sendVerificationEmail };
+module.exports = { sendEmail, sendVerificationEmail };

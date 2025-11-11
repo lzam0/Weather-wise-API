@@ -1,18 +1,26 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import weatherRoutes from "./routes/weatherRoutes.js";
-import authRoutes from "./routes/auth.js";
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+
+const weatherRoutes = require("./routes/weatherRoutes");
+const authRoutes = require("./routes/auth");
 
 dotenv.config();
 
 const app = express();
 
 // Allows request from FrontEnd
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
 
 // parse JSON body
 app.use(express.json());
+
+// parse cookies
+app.use(cookieParser());
 
 // Routes
 app.use("/api", authRoutes);

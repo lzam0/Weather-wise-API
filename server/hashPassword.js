@@ -1,5 +1,5 @@
 // hashPassword.js
-import bcrypt from 'bcrypt';
+const bcrypt = require("bcrypt");
 
 const plaintextPassword = process.argv[2]; // take password from command line argument
 

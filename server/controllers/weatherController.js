@@ -1,7 +1,8 @@
-import { weatherInfo } from "../services/weather.service.js";
-import { getFromCache, setInCache } from "../models/cache.js";
+const { weatherInfo } = require("../services/weather.service");
+const { getFromCache, setInCache } = require("../models/cache");
 
-export async function getWeather(req, res) {
+
+ async function getWeather(req, res) {
     try {
         const city = req.query.city || "London";
         const units = req.query.units || "metric";
@@ -21,3 +22,5 @@ export async function getWeather(req, res) {
     }
 
 }
+
+module.exports = { getWeather };
