@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import WeatherCard from "../components/WeatherCard";
 import "../styles/Home.css"
 import Navbar from "../components/Navbar";
+import { getText } from "../utils/contentLoader";
 
 function Home(){
     const [city, setCity] = useState("London");
@@ -17,7 +18,7 @@ function Home(){
                 const res = await fetch(`/api/weather?city=${encodeURIComponent(city)}&units=metric`);
                 const json = await res.json();
 
-                if (!res.ok) throw new Error(json.error || "Failed to load up the weather");
+                if (!res.ok) throw new Error(json.error || getText("home2", "weatherError"));
                 setData(json);
             } catch (err) {
                 setError(err.message);
@@ -31,11 +32,11 @@ function Home(){
 
             <Navbar onSearch={(searchedCity) => setCity(searchedCity)} />
             <div className="home-content">
-                <h1> Your Weather Companion </h1>
+                <h1>{getText("home2", "title")}</h1>
 
 
                 {error && <p className="error">{error}</p>}
-                {!data && !error && <p>Loading</p>}
+                {!data && !error && <p>{getText("home2", "loading")}</p>}
 
                 {data && (
                 <>
@@ -68,7 +69,7 @@ function Home(){
                 </>
             )}
 
-            <p className="description"> Daily accurate forecast tailred for you</p>
+            <p className="description">{getText("home2", "description")}</p>
             </div>
         </div>
     );

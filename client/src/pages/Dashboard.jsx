@@ -19,7 +19,7 @@ function Dashboard() {
         const res = await fetch(`/api/weather?city=${encodeURIComponent(city)}&units=metric`);
         const json = await res.json();
 
-        if (!res.ok) throw new Error(json.error || "Failed to load weather");
+        if (!res.ok) throw new Error(json.error || getText("dashboard", "weatherError"));
         setData(json);
       } catch (err) {
         setError(err.message);
@@ -35,7 +35,7 @@ function Dashboard() {
           <div className="dashboard-card">
             <h1>{getText("dashboard", "title")}</h1>
             <p className="welcome-text">
-              {getText("dashboard", "welcome")} <span>{user.fname + " " + user.lname}</span>!
+              {getText("dashboard2", "welcome")} <span>{user.fname + " " + user.lname}</span>!
             </p>
 
             <div className="dashboard-links">
@@ -49,7 +49,7 @@ function Dashboard() {
           </div>
           <div className="dashboard-weather">
             {error && <p className="error">{error}</p>}
-            {!data && !error && <p>Loading weather data...</p>}
+            {!data && !error && <p>{getText("dashboard2", "loading")}</p>}
 
             {data && (
               <>

@@ -50,5 +50,21 @@
   },
     "protectedPages":{
       "loadingPar":"Loading..."
-    }
+    },
+
+    "dashboard2": {
+    "title": "Dashboard",
+    "welcome": "Welcome back,",
+    "profileBtn": "Check Profile",
+    "homeBtn": "Return Home",
+    "loading": "Loading weather data...",
+    "weatherError": "Failed to load weather"
+  },
+
+  "home2": {
+    "title": "Your Weather Companion",
+    "loading": "Loading weather data...",
+    "description": "Daily accurate forecast tailored for you",
+    "weatherError": "Failed to load weather information"
+  }
 }
