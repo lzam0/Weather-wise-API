@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 
 const weatherRoutes = require("./routes/weatherRoutes");
 const authRoutes = require("./routes/auth");
+const dashboardRoutes = require("./routes/dashboard")
+const profileRoutes = require("./routes/profile")
 
 dotenv.config();
 
@@ -25,6 +27,10 @@ app.use(cookieParser());
 // Routes
 app.use("/api", authRoutes);
 app.use("/api/weather", weatherRoutes);
+
+// Protected routes
+app.use("/api/dashboard", dashboardRoutes);
+app.use(profileRoutes);
 
 // Start server
 app.listen(5000, () => console.log("🛰️ Server running on port 5000 🛰️"));
