@@ -19,9 +19,9 @@ function Dashboard() {
               <Link to="/profile" className="dashboard-btn">
                 {getText("dashboard", "profileBtn")}
               </Link>
-              <Link to="/" className="dashboard-btn secondary">
+              {/* <Link to="/" className="dashboard-btn secondary">
                 {getText("dashboard", "homeBtn")}
-              </Link>
+              </Link> */}
             </div>
           </div>
           <div className="dashboard-weather">
