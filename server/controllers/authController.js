@@ -52,6 +52,31 @@ class AuthController {
       if (existingUser) {
         return res.status(400).json({ message: "Email already registered" });
       }
+      
+      // Validate password strength
+      // password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character (@!%*).
+      function validatePassword(password) {
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!%*?&]).{8,}$/.test(password);
+      }
+
+      // Anti SQL Injection function
+      function noSQLInjection(str) {
+        const forbiddenChars = /[$.]/;
+        return !forbiddenChars.test(str);
+      }
+      
+      // Check for NoSQL Injection in email and names
+      if (!noSQLInjection(firstName) || !noSQLInjection(lastName) || !noSQLInjection(password)) {
+        return res.status(400).json({ message: "Invalid characters in input" });
+      }
+
+      // If password is not strong enough
+      if (!validatePassword(password)) {
+        return res.status(400).json({
+          message:
+            "Password must be at least 8 characters long, include an uppercase letter, lowercase letter, number, and special character.",
+        });
+      }
 
       // Hash the password
       const hashedPassword = await bcrypt.hash(password, 10);

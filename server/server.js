@@ -8,8 +8,7 @@ const authRoutes = require("./routes/auth");
 const dashboardRoutes = require("./routes/dashboard")
 const profileRoutes = require("./routes/profile")
 
-dotenv.config();
-
+// Initialize express app
 const app = express();
 
 // Allows request from FrontEnd
