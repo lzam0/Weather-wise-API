@@ -51,9 +51,9 @@ class AuthController {
       }
       
       // Validate password strength
-      // password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.
+      // password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character (@!%*).
       function validatePassword(password) {
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(password);
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!%*?&]).{8,}$/.test(password);
       }
 
       // Anti SQL Injection function
@@ -61,9 +61,9 @@ class AuthController {
         const forbiddenChars = /[$.]/;
         return !forbiddenChars.test(str);
       }
-
+      
       // Check for NoSQL Injection in email and names
-      if (!noSQLInjection(email) || !noSQLInjection(firstName) || !noSQLInjection(lastName)) {
+      if (!noSQLInjection(firstName) || !noSQLInjection(lastName) || !noSQLInjection(password)) {
         return res.status(400).json({ message: "Invalid characters in input" });
       }
 
